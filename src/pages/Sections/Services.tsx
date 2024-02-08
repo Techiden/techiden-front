@@ -1,11 +1,11 @@
-import React from "react";
+import SectionHeader from "../../components/SectionHeader";
 
 const Services = () => {
   return (
-    <section id="services">
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-6xl font-bold">Services</h1>
-      </div>
+    <section
+      id="services"
+      className="bg-primary flex flex-col text-white h-screen">
+      <SectionHeader title="Our Services" color="white" />
     </section>
   );
 };

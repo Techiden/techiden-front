@@ -11,26 +11,45 @@
 
 body {
   @apply overflow-x-hidden;
-  /* background: linear-gradient(90deg, #000 0%, #310686 100%); */
-  /* background: #310686; */
   background: #000;
+}
+
+::-webkit-scrollbar {
+  background: #310686;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #000 0%, #310686 100%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #42bfd0 0%, #310686 100%);
 }
 
 section,
 nav {
-  @apply px-60;
+  @apply px-60 py-40;
 }
 
 section {
   background-color: #fff;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 960px) {
   section,
   nav {
     @apply px-10;
   }
 }
+
+/* @media screen and (max-width: 960px) {
+  section,
+  nav {
+    @apply px-10;
+  }
+} */
 
 nav ul li:hover,
 nav ul li.active,
@@ -126,4 +145,9 @@ a {
   bottom: 0;
   z-index: -1;
   transition: all 1s ease;
+}
+
+.flipping-image {
+  filter: drop-shadow(0 0 0.75rem #42bfd0dd);
+  /* filter: drop-shadow(0 0 0.75rem #000); */
 }

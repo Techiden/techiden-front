@@ -1,27 +1,22 @@
 import { useEffect, useState } from "react";
-import Logo from "../assets/logo-dark-no-bg.png";
+import Logo from "../assets/logos/logo-dark-bg.svg";
 import Gradient from "./Gradient";
+import RequestDemoButton from "./RequestDemoButton";
+import { smoothScrollToElementById } from "../helpers/utils";
 
-const navLinks = ["Home", "About", "Services", "Contact"];
+const navLinks = ["Header", "About", "Services", "Contact"];
 
 const NavLink = ({ title }: { title: string }) => {
-  const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    const targetId = title === "Home" ? "home" : title.toLowerCase();
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop,
-        behavior: "smooth",
-      });
-    }
+    const targetId = title === "Header" ? "header" : title.toLowerCase();
+    smoothScrollToElementById(targetId);
   };
   return (
     <li>
       <a
         href={title === "Home" ? "/" : `#${title.toLowerCase()}`}
-        onClick={smoothScroll}>
+        onClick={handleClick}>
         {title}
       </a>
     </li>
@@ -57,15 +52,20 @@ const Navbar = ({
     <nav className="flex justify-between w-full py-8 fixed z-50">
       <Gradient isNavbar={true} scrolled={bgColor} />
 
-      <img src={Logo} alt="logo" className="w-16" />
+      <img src={Logo} alt="logo" className="w-44" />
       <ul className=" gap-8 cursor-pointer hidden md:flex items-center text-white">
         {navLinks.map((link) => (
           <NavLink key={link} title={link} />
         ))}
       </ul>
-      <a href="#" onClick={(e) => e.preventDefault()}>
+      {/* <a href="#" onClick={(e) => e.preventDefault()}>
         عربي
-      </a>
+      </a> */}
+
+      <RequestDemoButton
+        title="Request a Demo"
+        className="hidden md:block xl:w-1/5 md:w-1/4 text-sm"
+      />
     </nav>
   );
 };
