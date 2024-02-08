@@ -11,12 +11,12 @@ const Header = () => {
         className="flex w-screen pt-40 pb-20 flex-row gap-8 z-30  relative"
         id="header">
         <div className="h-full xl:basis-3/5 basis-full">
-          <div className="flex items-start flex-col gap-4 xl:h-[136px] h-[116px] ">
+          <div className="flex items-start flex-col gap-4 xl:h-[136px] h-[116px]  ">
             <TypeAnimation
               sequence={["Grow your business with Techiden"]}
               cursor={false}
               wrapper="h1"
-              className="text-white xl:text-5xl text-2xl font-bold"
+              className="text-white xl:text-5xl text-2xl font-bold ubuntu"
             />
             <TypeAnimation
               sequence={[

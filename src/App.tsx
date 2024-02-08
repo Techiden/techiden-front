@@ -6,6 +6,8 @@ import Services from "./pages/Sections/Services";
 import Contact from "./pages/Sections/Contact";
 import Footer from "./pages/Sections/Footer";
 import { useRef } from "react";
+import "@fontsource/poppins";
+import "@fontsource/ubuntu";
 
 const App = () => {
   const aboutRef = useRef(null);
