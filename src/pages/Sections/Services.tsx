@@ -54,7 +54,7 @@ const Services = () => {
       <SectionHeader
         title="We Know That Good Design Means Good Business"
         color="white"
-        className="text-center"
+        className="text-center mb-10"
       />
 
       <div className=" overflow-x-auto p-4 flex flex-row gap-8 ">

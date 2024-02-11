@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import quotationToL from "../../assets/icons/quotation-to-l.png";
 import quotationToR from "../../assets/icons/quotation-to-r.svg";
 import ahmed from "../../assets/founders/ahmed.png";
 import nosheen from "../../assets/founders/nosheen.png";
 import SectionHeader from "../../components/SectionHeader";
 import { SocialIcon } from "react-social-icons";
+
+import { motion, useScroll } from "framer-motion";
+import { slideInFromLeftVariants, slideUpVariants } from "../../helpers/utils";
 
 const founders = [
   {
@@ -31,30 +34,53 @@ const founders = [
 ];
 
 const About = React.forwardRef<HTMLElement, object>((_props, ref) => {
+  const { scrollYProgress } = useScroll();
+
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange((latest) => {
+      if (latest > 0 && !hasScrolled) {
+        setHasScrolled(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [scrollYProgress, hasScrolled]);
+
   return (
     <section id="about" ref={ref} className="">
-      <SectionHeader title="Meet Our Founders" />
+      <motion.div
+        variants={slideInFromLeftVariants}
+        initial="offscreen"
+        animate={hasScrolled ? "onscreen" : "offscreen"}>
+        <SectionHeader title="Meet Our Founders" className="mb-10" />
+      </motion.div>
 
-      <div className="grid md:grid-cols-1">
+      <motion.div className="grid md:grid-cols-1">
         {founders.map((founder, index) => (
-          <div
+          <motion.div
+            variants={slideUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: "some" }} // Adjust 'amount' as needed
             key={index}
             className={`flex flex-wrap ${
               index % 2 === 0
-                ? "xl:flex-row border-b-primary border-b-2 xl:border-none "
-                : "xl:flex-row-reverse"
+                ? "md:flex-row border-b-primary border-b-2 md:border-none "
+                : "md:flex-row-reverse"
             } flex-col items-center justify-center  py-10`}>
-            <div className="xl:w-1/2 flex flex-col justify-center text-center items-center text-primary ">
+            <div className="md:w-1/2 flex flex-col justify-center text-center items-center text-primary ">
               <img
                 src={founder.image}
                 alt={founder.name}
-                className="rounded-full xl:w-96 xl:h-96 w-1/2 object-cover mx-auto"
+                className="rounded-full md:w-96 md:h-96 w-1/2 object-cover mx-auto"
               />
-              <h2 className="xl:text-5xl font-bold xl:mt-8 mt-4">
+              <h2 className="md:text-5xl font-bold md:mt-8 mt-4">
                 {founder.name}
               </h2>
-              <h3 className="xl:text-4xl font-normal">{founder.title}</h3>
-              <div className="flex flex-row gap-2 mt-2 xl:mt-4">
+              <h3 className="md:text-4xl font-normal">{founder.title}</h3>
+              <div className="flex flex-row gap-2 mt-2 md:mt-4">
                 {Object.keys(founder.socials).map((social, index) => {
                   if (social === "email") {
                     return (
@@ -85,24 +111,24 @@ const About = React.forwardRef<HTMLElement, object>((_props, ref) => {
               </div>
             </div>
 
-            <div className="xl:w-1/2 flex flex-col gap-10 items-center">
+            <div className="md:w-1/2 flex flex-col gap-10 items-center">
               <img
                 src={quotationToR}
                 alt={founder.name}
-                className="xl:w-28  w-12  mr-auto"
+                className="md:w-28  w-12  mr-auto"
               />
-              <p className="xl:text-2xl text-lg text-center leading-tight xl:leading-relaxed">
+              <p className="md:text-2xl text-lg text-center leading-tight md:leading-relaxed">
                 {founder.bio}
               </p>
               <img
                 src={quotationToL}
                 alt={founder.name}
-                className="xl:w-28  w-12  ml-auto"
+                className="md:w-28  w-12  ml-auto"
               />
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 });

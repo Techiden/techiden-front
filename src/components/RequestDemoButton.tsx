@@ -12,7 +12,7 @@ const RequestDemoButton = ({
   className,
   ...rest
 }: RequestDemoButtonProps) => {
-  const buttonClassName = `linear-gradient xl:py-4 py-2 text-black font-bold text-lg md:text-lg xl:text-xl rounded-full ${
+  const buttonClassName = `linear-gradient md:py-4 py-2 text-black text-lg rounded-full ${
     width ? width : "w-full"
   } ${className || ""}`;
   return (

@@ -3,6 +3,7 @@ import Logo from "../assets/logos/logo-dark-bg.svg";
 import Gradient from "./Gradient";
 import RequestDemoButton from "./RequestDemoButton";
 import { smoothScrollToElementById } from "../helpers/utils";
+import { motion } from "framer-motion";
 
 const navLinks = ["Header", "About", "Services", "Contact"];
 
@@ -49,24 +50,23 @@ const Navbar = ({
   }, []);
 
   return (
-    <nav className="flex justify-between w-full py-8 fixed z-50">
+    <motion.nav className="flex justify-between w-full py-8 fixed z-50">
       <Gradient isNavbar={true} scrolled={bgColor} />
 
-      <img src={Logo} alt="logo" className="w-44" />
+      <motion.img src={Logo} alt="logo" className="w-44" 
+      
+      />
       <ul className=" gap-8 cursor-pointer hidden md:flex items-center text-white">
         {navLinks.map((link) => (
           <NavLink key={link} title={link} />
         ))}
       </ul>
-      {/* <a href="#" onClick={(e) => e.preventDefault()}>
-        عربي
-      </a> */}
 
       <RequestDemoButton
         title="Request a Demo"
-        className="hidden md:block xl:w-1/5 md:w-1/4 text-sm"
+        className="hidden md:block md:w-1/4 text-sm"
       />
-    </nav>
+    </motion.nav>
   );
 };
 

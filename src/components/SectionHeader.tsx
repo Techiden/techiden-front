@@ -11,7 +11,7 @@ const SectionHeader = ({
   ...rest
 }: SectionHeaderProps) => {
   const textColor = color === "white" ? "text-white" : "text-primary";
-  const sectionHeaderClassName = `xl:text-6xl text-3xl font-normal mb-20 text-center ${textColor} ${
+  const sectionHeaderClassName = `md:text-6xl text-3xl font-normal   ${textColor} ${
     className || ""
   }`;
   return (

@@ -8,7 +8,7 @@ const Gradient = ({
   return (
     <>
       {/* Large Screens */}
-      <div className="bg-linear-gradient hidden xl:flex  h-full basis-full  w-full"></div>
+      <div className="bg-linear-gradient hidden md:flex  h-full basis-full  w-full"></div>
 
       {/* Small Screens */}
       <div
@@ -18,7 +18,7 @@ const Gradient = ({
             : isNavbar
             ? "navbar-linear-gradient"
             : "bg-linear-gradient-mobile"
-        } flex xl:hidden h-full basis-full w-full`}></div>
+        } flex md:hidden h-full basis-full w-full`}></div>
     </>
   );
 };

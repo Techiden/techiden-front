@@ -1,7 +1,13 @@
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-gray-800 text-white text-center py-8">
-      <p>© 2021 All rights reserved</p>
+    <footer className="bg-primary text-white text-center py-8">
+      <p>
+        <a href="/" className="text-secondary">
+          Techiden{" "}
+        </a>
+        © {year} All rights reserved
+      </p>
     </footer>
   );
 };
